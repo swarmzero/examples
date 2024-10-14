@@ -1,0 +1,16 @@
+[model]
+model = "gpt-4o"
+
+[environment]
+type = "dev"
+
+[timeout]
+llm = 30
+
+[sample_prompts]
+prompts = [
+  "Can I get the Alpha Index?",
+  "Provide the Beta Index with explanations.",
+  "Provide the Yearly Narrative Index.",
+  "How did the Monthly Narrative Index perform?"
+]

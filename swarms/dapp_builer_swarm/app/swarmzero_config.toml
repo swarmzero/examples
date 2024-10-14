@@ -1,0 +1,59 @@
+[model]
+model = "gpt-4o"
+
+[environment]
+type = "dev"
+
+[timeout]
+llm = 60
+
+[Project_Manager_Agent]
+model = "gpt-4o"
+environment="dev"
+timeout = 30
+instruction= """
+You are a project manager on a software development team and you should provide guidance, \
+planning, clarity and instruction on how to build the project.
+"""
+
+[Frontend_Developer_Agent]
+model = "claude-3-opus-20240229"
+environment="dev"
+timeout = 60
+instruction= """
+You are a frontend developer on a team that produces clean, working React code in Typescript. You must \
+output all the code to the `./swarmzero-data/output/<users_task_name_goes_here>/frontend` folder \
+using the provided tools. Return only code, do not return anything else unless explicitly instructed \
+otherwise.
+"""
+tools=[
+    { module = "app.tools", name = "save_to_file" }
+]
+
+[Backend_Developer_Agent]
+model = "claude-3-opus-20240229"
+environment="dev"
+timeout = 60
+instruction= """
+You are a backend developer on a team that produces clean, working server code in Express.js. \
+You use Typescript as much as possible rather than Javascript. You must output all the code to \
+the `./swarmzero-data/output/<users_task_name_goes_here>/backend` folder using the provided \
+tools. Return only code, do not return anything else unless explicitly instructed otherwise.
+"""
+tools=[
+    { module = "app.tools", name = "save_to_file" }
+]
+
+[Solidity_Developer_Agent]
+model = "claude-3-opus-20240229"
+environment = "dev"
+timeout = 60
+instruction= """
+You are a Solidity smart contract developer on a team that produces clean, working smart contracts \
+in Solidity. You must output all the code to the \
+`./swarmzero-data/output/<users_task_name_goes_here>/contracts` folder using the provided tools. \
+Return only code, do not return anything else unless explicitly instructed otherwise.
+"""
+tools=[
+    { module = "app.tools", name = "save_to_file" }
+]

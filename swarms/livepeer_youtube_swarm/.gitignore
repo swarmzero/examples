@@ -1,0 +1,15 @@
+.env
+.venv
+.venv
+
+client_secret.json
+token.pickle
+
+swarmzero-data
+
+.idea
+.vscode
+.anima
+
+**/*/__pycache__
+.DS_Store

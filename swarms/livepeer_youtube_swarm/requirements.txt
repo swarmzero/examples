@@ -1,0 +1,10 @@
+swarmzero==0.0.1
+aiosqlite==0.20.0
+python-dotenv==1.0.1
+requests==2.31.0
+google-api-python-client==2.145.0
+google-auth-oauthlib==1.2.1
+moviepy==1.0.3
+Pillow==9.5.0
+livepeer-ai==0.5.0
+

@@ -1,0 +1,11 @@
+.venv
+venv
+.env
+.idea
+.vscode
+.DS_Store
+**/__pycache__/
+swarmzero-data/
+swarmzero.db
+.
+.anima/

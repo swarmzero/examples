@@ -1,0 +1,2 @@
+swarmzero==0.0.1
+langtrace-python-sdk

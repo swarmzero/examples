@@ -1,0 +1,15 @@
+[model]
+model = "gpt-4-turbo-preview"
+
+[environment]
+type = "dev"
+
+[timeout]
+llm = 30
+
+[sample_prompts]
+prompts = [
+    "What is the latest news about the stock market?",
+    "Get me news on new tech gadgets.",
+    "What's going on in the world of AI?",
+]

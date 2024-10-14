@@ -1,0 +1,6 @@
+swarmzero==0.0.1
+aiosqlite==0.20.0
+python-dotenv==1.0.1
+requests==2.31.0
+newsapi-python==0.2.7
+langtrace-python-sdk

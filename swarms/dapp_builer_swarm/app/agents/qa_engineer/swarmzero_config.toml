@@ -1,0 +1,4 @@
+[Quality_Assurance_Engineer_Agent]
+model = "mistral-large-latest"
+environment="dev"
+timeout = 60
