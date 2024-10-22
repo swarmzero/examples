@@ -23,9 +23,6 @@ newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
 page_size = 10
 page = 1
 
-today = datetime.today()
-date_28_days_ago = today - timedelta(days=28)
-formatted_date = date_28_days_ago.strftime("%Y-%m-%d")
 
 
 def fetch_latest_news_gdelt(query: str) -> Optional[str]:
@@ -116,6 +113,10 @@ def fetch_all_articles(query: str, sources: str, domains: str, to: str, language
     Returns:
         List of articles' titles and urls.
     """
+
+    today = datetime.today()
+    date_28_days_ago = today - timedelta(days=28)
+    formatted_date = date_28_days_ago.strftime("%Y-%m-%d")
 
     all_articles = newsapi.get_everything(q=query,
                                           sources=sources,
