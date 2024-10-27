@@ -1,0 +1,13 @@
+[model]
+model = "gpt-4o"
+
+[environment]
+type = "dev"
+
+[sample_prompts]
+prompts = [
+    "Research the history of the internet",
+    "Publish research about using crypto-economics to incentivize AI agents to collaborate and publish to Google Docs",
+    "Research the history of the stock market and the role of the Federal Reserve. Publish the findings to Confluence.",
+    "Can you help me research the feasibility of distributed model training for LLMs? When you're done, publish the findings to Sharepoint.",
+]
