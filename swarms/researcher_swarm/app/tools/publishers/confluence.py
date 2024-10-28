@@ -36,7 +36,6 @@ def publish_to_confluence(title: str, results_text: str) -> str:
     CONFLUENCE_USERNAME = os.getenv("CONFLUENCE_USERNAME")
     CONFLUENCE_API_TOKEN = os.getenv("CONFLUENCE_API_TOKEN")
     CONFLUENCE_SPACE_KEY = os.getenv("CONFLUENCE_SPACE_KEY")
-    CONFLUENCE_PARENT_PAGE_ID = os.getenv("CONFLUENCE_PARENT_PAGE_ID")  # optional
 
     try:
         # search for existing page

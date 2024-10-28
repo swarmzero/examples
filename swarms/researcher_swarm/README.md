@@ -79,7 +79,7 @@ sequenceDiagram
 1. **Clone the Repository:**
     ```bash
     git clone https://github.com/swarmzero/examples.git
-    cd examples/swarms/researcher-swarm
+    cd examples/swarms/researcher_swarm
     ```
 
 2. **Create a Virtual Environment and Activate It:**
@@ -106,7 +106,7 @@ sequenceDiagram
 To ensure the application functions correctly, you need to obtain and set several environment variables. Follow the step-by-step instructions for each required variable:
 
 ### 1. **API Keys**
-This projects uses `gpt-4o` by default, but you can easily swap it out for another model. Ensure to update the model name in the [swarmzero_config.toml](./swarmzero_config.toml) file.
+This projects uses `gpt-4o` by default, but you can easily swap it out for any of our [supported models](https://docs.swarmzero.ai/sdk/agent-kit#supported-large-language-models-llms). Ensure to update the model name in the [swarmzero_config.toml](./swarmzero_config.toml) file.
 
 #### a. **OpenAI API Key**
    - **Sign Up / Log In:** Visit the [OpenAI website](https://platform.openai.com/) and sign up or log in to your account.
@@ -126,7 +126,7 @@ This projects uses `gpt-4o` by default, but you can easily swap it out for anoth
      ```
 
 #### c. **Anthropic API Key**
-   - **Access Anthropic's Platform:** Navigate to [Anthropic's developer portal](https://www.anthropic.com/developers).
+   - **Access Anthropic's Platform:** Navigate to [Anthropic's developer portal](https://www.anthropic.com/api).
    - **Create an Account:** Register or sign in to your existing account.
    - **Generate API Key:** Obtain your API key from the dashboard.
    - **Set in `.env`:**
@@ -134,7 +134,16 @@ This projects uses `gpt-4o` by default, but you can easily swap it out for anoth
      ANTHROPIC_API_KEY=your_anthropic_api_key
      ```
 
-#### d. **Firecrawl API Key**
+#### d. **Gemini API Key**
+   - **Visit Google AI Studio:** Go to [Google AI Studio](https://aistudio.google.com/app/apikey).
+   - **Sign Up / Log In:** Sign in with your Google account.
+   - **Get API Key:** Click "Create API key" to generate a new key.
+   - **Set in `.env`:**
+     ```
+     GEMINI_API_KEY=your_gemini_api_key
+     ```
+
+#### e. **Firecrawl API Key**
    - **Go to Firecrawl's Website:** Visit [Firecrawl](https://www.firecrawl.dev).
    - **Register / Log In:** Create an account or log in.
    - **Retrieve API Key:** Access your dashboard to find or generate your API key.
@@ -143,7 +152,7 @@ This projects uses `gpt-4o` by default, but you can easily swap it out for anoth
      FIRECRAWL_API_KEY=your_firecrawl_api_key
      ```
 
-#### e. **SerpApi Key**
+#### f. **SerpApi Key**
    - **Visit SerpApi:** Head over to [SerpApi](https://serpapi.com/).
    - **Sign Up / Log In:** Create an account or log in.
    - **Obtain API Key:** Find your API key in the dashboard.
@@ -243,7 +252,6 @@ This projects uses `gpt-4o` by default, but you can easily swap it out for anoth
      CONFLUENCE_ORGANISATION_ID=your_confluence_organisation_id
      CONFLUENCE_USERNAME=your_confluence_username
      CONFLUENCE_SPACE_KEY=your_confluence_space_key
-     CONFLUENCE_PARENT_PAGE_ID=your_confluence_parent_page_id
      ```
 
 ## Configuration
@@ -252,8 +260,9 @@ Ensure all necessary environment variables are set in the `.env` file, including
 
 - **API Keys:**
   - `OPENAI_API_KEY`
-  - `MISTRAL_API_KEY`
-  - `ANTHROPIC_API_KEY`
+  - `MISTRAL_API_KEY` (optional)
+  - `ANTHROPIC_API_KEY` (optional)
+  - `GEMINI_API_KEY` (optional)
   - `FIRECRAWL_API_KEY`
   - `SERP_API_KEY`
 
@@ -274,7 +283,6 @@ Ensure all necessary environment variables are set in the `.env` file, including
   - `CONFLUENCE_USERNAME`
   - `CONFLUENCE_API_TOKEN`
   - `CONFLUENCE_SPACE_KEY`
-  - `CONFLUENCE_PARENT_PAGE_ID`
 
 ## Usage
 
@@ -289,12 +297,10 @@ This will initialize the AI agents, perform web searches, map URLs, scrape conte
 ### Example Prompts
 
 When prompted, you can enter research queries like:
-```
-"Research the history of the internet"
-"Research crypto-economics and AI agent collaboration, publish to Google Docs"
-"Research the history of the stock market and Federal Reserve, publish to Confluence"
-"Research distributed model training for LLMs and publish to SharePoint"
-```
+- *Research the history of the internet*
+- *Research crypto-economics and AI agent collaboration, publish to Google Docs*
+- *Research the history of the stock market and Federal Reserve, publish to Confluence*
+- *Research distributed model training for LLMs and publish to SharePoint*
 
 Each prompt will trigger the swarm to:
 1. Search for relevant information
@@ -309,7 +315,9 @@ Each prompt will trigger the swarm to:
   - **Google Docs:** Automatically publish research findings to Google Docs.
   - **SharePoint:** Upload and manage documents within SharePoint.
   - **Confluence:** Publish documentation and research results to Confluence.
-- **Search and Scrape:** Perform automated Google searches and scrape relevant web pages.
+- **Search and Scrape:** 
+  - **SerpAPI:** Perform automated Google searches
+  - **Firecrawl:** Advanced web scraping and URL mapping
 - **Configuration Management:** Easily manage configurations through environment variables.
 
 ## Example Outputs
@@ -337,16 +345,12 @@ Contributions are welcome! Please follow these steps:
 3. Commit your changes with clear messages.
 4. Push to your fork and create a pull request.
 
-Ensure that your code adheres to the existing style and includes appropriate tests.
-
 
 ## Inspiration
 
 This project is inspired by the [Firecrawl Web Extractor by Eric Ciarla](https://github.com/mendableai/firecrawl/tree/main/examples/openai_swarm_firecrawl_web_extractor). It demonstrates the effective integration of AI agents with web scraping tools to automate data extraction and processing tasks, serving as a foundation for building sophisticated research swarms.
 
 
-
 ## Contact
 
 For any questions or support, either create an issue on GitHub or reach out to us on [Discord](https://discord.gg/UyR6j3zBsX).
-
