@@ -8,12 +8,12 @@ import dotenv
 
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
 
 dotenv.load_dotenv()
+
 
 def publish_to_google_docs(title: str, results_text: str) -> str:
     """
@@ -51,7 +51,9 @@ def publish_to_google_docs(title: str, results_text: str) -> str:
             creds.refresh(Request())
         else:
             if not os.path.exists(GOOGLE_APPLICATION_CREDENTIALS):
-                logger.error(f"Credentials file '{GOOGLE_APPLICATION_CREDENTIALS}' not found")
+                logger.error(
+                    f"Credentials file '{GOOGLE_APPLICATION_CREDENTIALS}' not found"
+                )
                 raise FileNotFoundError(
                     f"Missing '{GOOGLE_APPLICATION_CREDENTIALS}' file."
                 )
@@ -60,7 +62,7 @@ def publish_to_google_docs(title: str, results_text: str) -> str:
                 GOOGLE_APPLICATION_CREDENTIALS, GOOGLE_SCOPES
             )
             creds = flow.run_local_server(port=0)
-        
+
         logger.debug("Saving new credentials to token file")
         with open(token_path, "w") as token:
             token.write(creds.to_json())
@@ -68,32 +70,27 @@ def publish_to_google_docs(title: str, results_text: str) -> str:
     try:
         logger.info("Initializing Google Docs service")
         docs_service = build("docs", "v1", credentials=creds)
-        
+
         logger.info(f'Creating new document with title: "{title}"')
         doc = docs_service.documents().create(body={"title": title}).execute()
         document_id = doc.get("documentId")
         document_url = f"https://docs.google.com/document/d/{document_id}/edit"
-        logger.info(f'Document created successfully with ID: {document_id}')
+        logger.info(f"Document created successfully with ID: {document_id}")
 
         requests_batch = [
             {
                 "insertText": {
                     "location": {"index": 1},
-                    "text": f"{title}\n\n{results_text}"
+                    "text": f"{title}\n\n{results_text}",
                 }
             },
             {
                 "updateParagraphStyle": {
-                    "range": {
-                        "startIndex": 1,
-                        "endIndex": len(title) + 1
-                    },
-                    "paragraphStyle": {
-                        "namedStyleType": "HEADING_1"
-                    },
-                    "fields": "namedStyleType"
+                    "range": {"startIndex": 1, "endIndex": len(title) + 1},
+                    "paragraphStyle": {"namedStyleType": "HEADING_1"},
+                    "fields": "namedStyleType",
                 }
-            }
+            },
         ]
 
         logger.debug("Updating document with content")

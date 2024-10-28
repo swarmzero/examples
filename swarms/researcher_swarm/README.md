@@ -11,10 +11,10 @@ Find out more about SwarmZero's integrations at [swarmzero.ai/integrations](http
 
 ## Diagrams
 
-###
-![Diagram](./ai_researcher_swarm_architecture.png)
+### AI Researcher Swarm Overview Diagram
+![Diagram](./assets/ai_researcher_swarm_architecture.png)
 
-### Researcher Swarm Sequence Diagram
+### AI Researcher Swarm Sequence Diagram
 ```mermaid
 ---
 title: Research Process Sequence Diagram
@@ -318,6 +318,7 @@ Each prompt will trigger the swarm to:
 
 ### Local PDF
 ![Local PDF](./assets/local_pdf.png)
+More generated PDFs can be found in the [sample outputs](./sample-outputs) folder.
 
 ### Google Docs
 ![Google Docs](./assets/google_docs.png)
@@ -327,6 +328,7 @@ Each prompt will trigger the swarm to:
 
 ### Confluence
 ![Confluence](./assets/confluence.png)
+
 
 ## Contributing
 

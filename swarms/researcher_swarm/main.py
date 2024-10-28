@@ -1,6 +1,5 @@
 import asyncio
 import logging
-import os
 
 from swarmzero import Agent, Swarm
 from swarmzero.sdk_context import SDKContext
@@ -18,6 +17,7 @@ from app.tools.publishers import (
 )
 
 import dotenv
+
 dotenv.load_dotenv()
 
 logging.basicConfig(
@@ -26,9 +26,9 @@ logging.basicConfig(
     handlers=[logging.StreamHandler()],
 )
 
+
 config_path = "./swarmzero_config.toml"
 sdk_context = SDKContext(config_path=config_path)
-
 
 google_search_agent = Agent(
     name="Google Search Agent",
@@ -167,6 +167,7 @@ async def main():
             print(
                 "\nAn error occurred while processing your research topic. Please try again.\n"
             )
+
 
 if __name__ == "__main__":
     asyncio.run(main())
