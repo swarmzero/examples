@@ -82,15 +82,14 @@ sequenceDiagram
     cd examples/swarms/researcher_swarm
     ```
 
-2. **Create a Virtual Environment and Activate It:**
+2. **Install Poetry (if not already installed):**
     ```bash
-    python3 -m venv .venv
-    source .venv/bin/activate
+    curl -sSL https://install.python-poetry.org | python3 -
     ```
 
 3. **Install Dependencies:**
     ```bash
-    pip install -r requirements.txt
+    poetry install
     ```
 
 4. **Set Up Environment Variables:**
@@ -289,7 +288,7 @@ Ensure all necessary environment variables are set in the `.env` file, including
 Run the main application using:
 
 ```bash
-python main.py
+poetry run python main.py
 ```
 
 This will initialize the AI agents, perform web searches, map URLs, scrape content, and publish the results to the configured platforms.
