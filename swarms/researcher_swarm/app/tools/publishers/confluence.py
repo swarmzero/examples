@@ -51,10 +51,6 @@ def publish_to_confluence(title: str, results_text: str) -> str:
             auth=(CONFLUENCE_USERNAME, CONFLUENCE_API_TOKEN),
         )
 
-        # log response for debugging
-        logger.debug(f"Search response status: {search_response.status_code}")
-        logger.debug(f"Search response text: {search_response.text}")
-
         if search_response.status_code == 200:
             search_data = search_response.json()
 
