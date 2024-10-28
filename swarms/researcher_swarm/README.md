@@ -32,7 +32,6 @@ sequenceDiagram
     box Tools #FFE4E1
         participant SA as SerpAPI
         participant FC as Firecrawl
-        participant AIT as AI Tools
         participant PUB as Publishing Tools<br/>(Google Docs/SharePoint/<br/>Confluence/PDF)
     end
 
@@ -62,8 +61,7 @@ sequenceDiagram
     
     O->>AA: Start analysis
     activate AA
-    AA->>AIT: Analyze content
-    AIT-->>AA: Return analysis
+    Note over AA: Process with LLM. No tools needed.
     AA-->>O: Return analyzed content
     deactivate AA
     
