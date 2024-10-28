@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from docx import Document
 from io import BytesIO
 
-# Configure logging
+
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
@@ -37,16 +37,6 @@ def publish_to_sharepoint(title: str, results_text: str) -> str:
     SHAREPOINT_SITE_ID = os.getenv("SHAREPOINT_SITE_ID")
     SHAREPOINT_DRIVE_ID = os.getenv("SHAREPOINT_DRIVE_ID")
 
-    # Log configuration status (without exposing sensitive data)
-    logger.debug("SharePoint Configuration Check:")
-    logger.debug(f"Client ID present: {'Yes' if SHAREPOINT_CLIENT_ID else 'No'}")
-    logger.debug(
-        f"Client Secret present: {'Yes' if SHAREPOINT_CLIENT_SECRET else 'No'}"
-    )
-    logger.debug(f"Tenant ID present: {'Yes' if SHAREPOINT_TENANT_ID else 'No'}")
-    logger.debug(f"Site ID present: {'Yes' if SHAREPOINT_SITE_ID else 'No'}")
-    logger.debug(f"Drive ID present: {'Yes' if SHAREPOINT_DRIVE_ID else 'No'}")
-
     try:
         logger.debug("Initiating SharePoint authentication")
         authority = f"https://login.microsoftonline.com/{SHAREPOINT_TENANT_ID}"
@@ -61,7 +51,7 @@ def publish_to_sharepoint(title: str, results_text: str) -> str:
         scopes = ["https://graph.microsoft.com/.default"]
         logger.debug(f"Requesting scopes: {scopes}")
 
-        # Get access token
+        # get access token
         logger.info("Requesting access token")
         result = app.acquire_token_for_client(scopes=scopes)
 
@@ -84,15 +74,14 @@ def publish_to_sharepoint(title: str, results_text: str) -> str:
         }
         logger.debug("Request headers prepared (token hidden)")
 
-        # Prepare file upload
         file_name = f"{title}.docx"
 
-        # Convert text content to basic Word document format
+        # convert text content to basic Word document format
         doc = Document()
         doc.add_heading(title, 0)
         doc.add_paragraph(results_text)
 
-        # Save to bytes
+        # save to bytes
         doc_bytes = BytesIO()
         doc.save(doc_bytes)
         file_content = doc_bytes.getvalue()
@@ -100,18 +89,15 @@ def publish_to_sharepoint(title: str, results_text: str) -> str:
         logger.info(f"Preparing file upload: {file_name}")
         logger.debug(f"File size: {len(file_content)} bytes")
 
-        # Construct upload URL
         upload_url = (
             f"https://graph.microsoft.com/v1.0/sites/{SHAREPOINT_SITE_ID}"
             f"/drives/{SHAREPOINT_DRIVE_ID}/root:/{quote_plus(file_name)}:/content"
         )
         logger.debug(f"Upload URL: {upload_url}")
 
-        # Attempt upload
         logger.info(f"Uploading file to SharePoint: {file_name}")
         response = requests.put(upload_url, headers=headers, data=file_content)
 
-        # Log response details
         logger.debug(
             f"""SharePoint Response Details:
             Status Code: {response.status_code}

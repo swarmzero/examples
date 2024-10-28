@@ -162,18 +162,18 @@ def save_as_local_pdf(title: str, results_text: str, pdf_output_path: str) -> st
         pdf = FPDF()
         pdf.add_page()
 
-        # Header
+        # header
         pdf.set_font("Arial", "B", 16)
         pdf.cell(0, 10, title, ln=True, align="C")
-        pdf.ln(10)  # Line break
+        pdf.ln(10)  # line break
 
-        # Content
+        # content
         pdf.set_font("Arial", size=12)
         for line in results_text.strip().split("\n"):
             pdf.multi_cell(0, 10, txt=line.strip())
             pdf.ln(1)
 
-        # Ensure the output directory exists
+        # ensure the output directory exists
         output_path = os.path.abspath(pdf_output_path)
         output_dir = os.path.dirname(output_path)
         if not os.path.exists(output_dir):
