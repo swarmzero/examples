@@ -1,0 +1,21 @@
+.vscode
+.idea
+
+**/*/.DS_Store
+
+.env
+env
+venv
+.venv
+
+swarmzero-data/
+
+**/*/__pycache__
+
+*.log
+log/
+logs/
+
+# google docs
+credentials.json
+token.json
