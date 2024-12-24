@@ -59,7 +59,7 @@ curl -X 'POST' \
 
 4. AgentOps will automatically capture the session:
 - View the [agentops.log](agentops.log) file
-- See the[AgentOps Dashboard](https://app.agentops.ai/drilldown)
+- See the [AgentOps Dashboard](https://app.agentops.ai/drilldown)
 
 ## Dependencies
 
