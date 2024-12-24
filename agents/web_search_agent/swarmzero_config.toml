@@ -1,0 +1,12 @@
+[model]
+model = "gpt-4o"
+# model = "claude-3-5-sonnet-latest"
+
+[environment]
+type = "dev"
+
+[timeout]
+llm = 30
+
+[sample_prompts]
+prompts = []

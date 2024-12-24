@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "web-search-agent"
+version = "0.0.1"
+description = ""
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+swarmzero = { git = "https://github.com/swarmzero/swarmzero.git", branch = "main" }
+python-dotenv = "^1.0.0"
+agentops = "^0.3.21"
+tavily-python = "^0.5.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry-core.backend"
