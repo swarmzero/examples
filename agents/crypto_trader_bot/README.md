@@ -25,7 +25,7 @@ Inspired by [How to build your own Add Liquidity Signal Telegram Bot for Solana 
 1. Clone the repository:
 ```bash
 git clone https://github.com/swarmzero/examples.git
-cd examples/agents/crypto-trader-bot
+cd examples/agents/crypto_trader_bot
 ```
 
 2. Install dependencies using Poetry:
