@@ -1,0 +1,15 @@
+[model]
+model = "gpt-4o"
+
+[sample_prompts]
+prompts = [
+    "How's the Ethereum market looking?",
+    "Show me trading opportunities on BSC",
+    "What's happening on Solana?"
+]
+
+[environment]
+type = "dev"
+
+[timeout]
+llm = 30
