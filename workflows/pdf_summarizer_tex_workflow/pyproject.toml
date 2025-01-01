@@ -1,0 +1,14 @@
+[project]
+name = "agent2agent"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Hadi Youssef", email = "hmyoussef@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = ["swarmzero @ file:///home/hadi_y5275/Work/SwarmZero/swarmzero", "pymupdf (>=1.26.3,<2.0.0)"]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
