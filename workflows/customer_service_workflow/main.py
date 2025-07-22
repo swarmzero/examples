@@ -1,12 +1,16 @@
 import os
 import uuid
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 from swarmzero.agent import Agent
 from swarmzero.sdk_context import SDKContext
 from swarmzero.workflow import Workflow, WorkflowStep, StepMode
 
 CONFIG_PATH = os.path.join(os.path.dirname(__file__), "swarmzero_config.toml")
-sdk_context = SDKContext(CONFIG_PATH)
+sdk_context = SDKContext(config_path=CONFIG_PATH)
 
 # Agent 1: Greeting Agent
 greeting_agent = Agent(
@@ -120,6 +124,7 @@ steps = [
     WorkflowStep(
         runner=greeting_agent,
         name="Greet Customer",
+        sdk_context=sdk_context,
         mode=StepMode.SEQUENTIAL
     ),
     
@@ -127,6 +132,7 @@ steps = [
     WorkflowStep(
         runner=classification_agent,
         name="Classify Issue",
+        sdk_context=sdk_context,
         mode=StepMode.SEQUENTIAL
     ),
     
@@ -134,6 +140,7 @@ steps = [
     WorkflowStep(
         runner=billing_agent,
         name="Handle Billing Issue",
+        sdk_context=sdk_context,
         mode=StepMode.CONDITIONAL,
         condition=is_billing_issue
     ),
@@ -141,6 +148,7 @@ steps = [
     WorkflowStep(
         runner=technical_agent,
         name="Handle Technical Issue", 
+        sdk_context=sdk_context,
         mode=StepMode.CONDITIONAL,
         condition=is_technical_issue
     )
@@ -150,6 +158,7 @@ steps = [
 customer_service_workflow = Workflow(
     name="Customer Service Workflow",
     steps=steps,
+    sdk_context=sdk_context,
     instruction="Handle customer service requests from initial greeting through issue resolution",
     description="A comprehensive customer service workflow that routes customers to appropriate specialists"
 )
@@ -163,6 +172,9 @@ async def handle_customer_request(customer_message: str):
 import asyncio
 
 async def main():
+    # Initialize the database first
+    await sdk_context.initialize_database()
+    
     # simulate a customer message
     customer_message = "Hi, I'm having trouble with my bill. I was charged twice this month."
     

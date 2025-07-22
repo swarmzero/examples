@@ -35,3 +35,6 @@ sample_prompts = [
 
 [default_config]
 log = "WARNING"
+
+[database]
+url = "sqlite+aiosqlite:///swarmzero-data/db/swarmzero.db"
